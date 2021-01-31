@@ -3,7 +3,7 @@ Code for paper "Explaining predictions by Approximating the Local Decision Bound
 
 We provide code for CelebA experiment.
 
-!cd CelebA
+!cd CelebA \\
 !python3 explain_celeba.py
 
 
