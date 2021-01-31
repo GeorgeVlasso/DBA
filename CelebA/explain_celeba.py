@@ -44,33 +44,33 @@ rs = check_random_state(12345)
 
 print("Loading pretrained models and embedded data")
 
-json_file = open('decode_clb.json', 'r')
+json_file = open('models/decode_clb.json', 'r')
 loaded_decode_json = json_file.read()
 json_file.close()
 decoder = model_from_json(loaded_decode_json)
-decoder.load_weights("decode_clb.h5")
+decoder.load_weights("models/decode_clb.h5")
 print("Loaded decoder from disk")
 
-json_file = open('cnn_clb3.json', 'r')
+json_file = open('models/cnn_clb3.json', 'r')
 loaded_cnn_json = json_file.read()
 json_file.close()
 cnn = model_from_json(loaded_cnn_json)
-cnn.load_weights("cnn_clb3.h5")
+cnn.load_weights("models/cnn_clb3.h5")
 print("Loaded cnn from disk")
 
-json_file = open('code_clb.json', 'r')
+json_file = open('models/code_clb.json', 'r')
 loaded_cnn_json = json_file.read()
 json_file.close()
 code = model_from_json(loaded_cnn_json)
-code.load_weights("code_clb.h5")
+code.load_weights("models/code_clb.h5")
 print("Loaded encoder from disk")
 
 
-embeddings = np.load("embs_00001-009000.npy")
-preds = np.load("preds_00001-009000.npy")
+embeddings = np.load("data/embs_00001-009000.npy")
+preds = np.load("data/preds_00001-009000.npy")
 predss = np.array(preds >= 0.5).astype("int32")
 
-c_batch = np.load("celeba_batch.npy.npz")["arr_0"]
+c_batch = np.load("data/celeba_batch.npy.npz")["arr_0"]
 
 decoded = decoder.predict(code.predict(c_batch))
 emb_batch = code.predict(c_batch)
@@ -120,7 +120,7 @@ def find_db_index_k(x, y):
   k = np.where(np.abs(x-0.5) == np.abs(x-0.5).min())
   return x[k[0][0] -5 : k[0][0] + 5],y[k[0][0] -5 : k[0][0] + 5]
 
-allAttributes = pd.read_csv('list_attr_celeba.csv.zip')
+allAttributes = pd.read_csv('data/list_attr_celeba.csv.zip')
 print(allAttributes)
 Male = (allAttributes.loc[0:8999,"Male"] > 0).astype("int32")
 Smiling = (allAttributes.loc[0:8999,"Smiling"] > 0).astype("int32")
