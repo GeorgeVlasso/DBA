@@ -213,7 +213,7 @@ def annotator(i):
     checkpoint = ModelCheckpoint(filepath, monitor = 'val_loss', verbose = 1, save_best_only = True, mode = 'min')
     callbacks_list = [checkpoint]
     m.fit(X_train,y_train[:,i], epochs = 50 , validation_data= (X_test, y_test[:,i]), callbacks = callbacks_list)
-  m.load_weights("ano" + str(i) + ".best.hdf5")
+  m.load_weights("models/"+"ano" + str(i) + ".best.hdf5")
   return m
 
 ano_1 = Sequential()
