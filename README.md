@@ -4,6 +4,8 @@ Code for paper "Explaining predictions by Approximating the Local Decision Bound
 We provide code for CelebA experiment. <br/>
 Clone the repository in a Google colab notebook and run with GPU.
 
+!cd CelebA
+
 !python3 explain_celeba.py
 
 
